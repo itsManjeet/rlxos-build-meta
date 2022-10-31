@@ -1,0 +1,39 @@
+name: continuous
+on:
+  push:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+env:
+  BST: bst --config buildstream.conf --colors --builders 1
+jobs:
+  build:
+    name: generate cache
+    runs-on: self-hosted
+    timeout-minutes: 46000
+    steps:
+      - uses: actions/checkout@v1
+      - name: start buildstream build
+        run: ${BST} build installer/image.bst
+    
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    name: deploy system image
+    steps:
+      - uses: actions/checkout@v1
+      - name: checkout image
+        run: ${BST} checkout installer/image.bst /storage.rlxos.dev/releases/ --force
+  
+  ostree:
+    needs: build
+    runs-on: self-hosted
+    name: commit ostree
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: commit ostree
+        run: |
+          echo "${{ github.event.head_commit.message }}" > commit_body
+          BRANCH="${GITHUB_REF##*/}" OSTREE_REPO="/ostree.rlxos.dev" OSTREE_GPG="/gpg.rlxos.dev" make update-ostree

@@ -1,0 +1,27 @@
+kind: stack
+depends:
+- components/gdm.bst
+- components/gnome-backgrounds.bst
+- components/gnome-bluetooth.bst
+- components/gnome-color-manager.bst
+- components/gnome-control-center.bst
+- components/gnome-desktop.bst
+- components/gnome-initial-setup.bst
+- components/gnome-keyring.bst
+- components/gnome-menus.bst
+- components/gnome-remote-desktop.bst
+- components/gnome-session.bst
+- components/gnome-settings-daemon.bst
+- components/gnome-shell-extensions.bst
+- components/gnome-shell.bst
+- components/gnome-tour.bst
+- components/gnome-user-docs.bst
+- components/gnome-user-share.bst
+- components/gvfs-daemon.bst
+- components/mutter.bst
+- components/orca.bst
+- components/rygel.bst
+- components/sushi.bst
+- components/adwaita-icon-theme.bst
+- components/glib-networking.bst
+- components/gsettings-desktop-schemas.bst
