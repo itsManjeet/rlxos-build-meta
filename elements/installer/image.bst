@@ -117,5 +117,5 @@ config:
     cd /build/stage-2
     genimage
 
-  - mv /build/images/installer.iso "%{install-root}/"
-  - implantisomd5 "%{install-root}/installer.iso"
+  - mv /build/images/installer.iso "%{install-root}/%{installer-volume-id}.iso"
+  - implantisomd5 "%{install-root}/%{installer-volume-id}.iso"
