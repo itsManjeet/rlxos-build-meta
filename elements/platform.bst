@@ -46,6 +46,7 @@ depends:
 - components/pinentry.bst
 - components/pipewire.bst
 - components/pygobject.bst
+- components/thermald.bst
 - components/tracker.bst
 - components/webkit2gtk-4.1.bst
 - components/webkit2gtk-5.0.bst
