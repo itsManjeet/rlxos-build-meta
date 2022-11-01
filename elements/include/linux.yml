@@ -8,4 +8,4 @@ sources:
   - '*-rc*'
   ref: v5.18.19-0-g22a992953741ad79c07890d3f4104585e52ef26b
 - kind: local
-  path: files/linux/config-utils.sh
+  path: files/linux/config
