@@ -11,6 +11,7 @@ build-depends:
 - freedesktop-sdk.bst:components/bc.bst
 - freedesktop-sdk.bst:components/gzip.bst
 - freedesktop-sdk.bst:components/rsync.bst
+- freedesktop-sdk.bst:components/python3.bst
 
 variables:
   bootdir: /boot
