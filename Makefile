@@ -20,7 +20,7 @@ export OSTREE_GPG_CONFIG
 
 all: update-ostree
 
-$(OSTREE_GPG):
+$(OSTREE_GPG)/key-config:
 	rm -rf ostree-gpg.tmp
 	mkdir ostree-gpg.tmp
 	chmod 0700 ostree-gpg.tmp
@@ -29,7 +29,7 @@ $(OSTREE_GPG):
 	gpg --homedir=ostree-gpg.tmp -k --with-colons | sed '/^fpr:/q;d' | cut -d: -f10 >ostree-gpg.tmp/default-id
 	mv ostree-gpg.tmp $(OSTREE_GPG)
 
-files/config/rlxos.gpg: $(OSTREE_GPG)
+files/config/rlxos.gpg: $(OSTREE_GPG)/key-config
 	gpg --homedir=$(OSTREE_GPG) --export --armor >"$@"
 
 update-ostree: $(OSTREE_GPG) files/config/rlxos.gpg
