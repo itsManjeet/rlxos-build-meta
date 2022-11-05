@@ -19,4 +19,4 @@ variables:
 config:
   install-commands:
     (>):
-    - ln -s mount.ntfs-3g %{install-root}%{bindir}/mount.ntfs
+    - ln -s ntfs-3g %{install-root}%{bindir}/mount.ntfs
