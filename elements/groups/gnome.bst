@@ -17,6 +17,7 @@ depends:
 - components/gnome-tour.bst
 - components/gnome-user-docs.bst
 - components/gnome-user-share.bst
+- components/gnome-browser-connector.bst
 - components/gvfs-daemon.bst
 - components/mutter.bst
 - components/orca.bst
