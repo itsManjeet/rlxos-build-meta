@@ -26,10 +26,10 @@ jobs:
       - name: run testcase
         run: |
           ${BST} checkout installer/image.bst checkout --force
-          podman run --rm -it -v tests:/tests:Z registry.opensuse.org/devel/openqa/containers/isotovideo:qemu-x86 qemu_no_kvm=1 casedir=/tests iso=checkout/rlxos-"${GITHUB_REF##*/}"-x86_64.iso
+          podman run --rm -it -v ./tests:/tests:Z -v ./checkout:/checkout:Z registry.opensuse.org/devel/openqa/containers/isotovideo:qemu-x86 qemu_no_kvm=1 casedir=/tests iso=checkout/rlxos-"${GITHUB_REF##*/}"-x86_64.iso
 
   deploy:
-    needs: build
+    needs: tests
     runs-on: self-hosted
     name: deploy system image
     steps:
@@ -43,7 +43,7 @@ jobs:
           mv system-image/disk.img.xz /storage.rlxos.dev/releases/rlxos-"${GITHUB_REF##*/}"-x86_64-disk.img.xz
 
   ostree:
-    needs: build
+    needs: tests
     runs-on: self-hosted
     name: commit ostree
 

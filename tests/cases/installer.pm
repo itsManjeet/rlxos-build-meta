@@ -8,3 +8,5 @@ sub run {
 
     assert_screen 'desktop', 300;
 }
+
+1;
