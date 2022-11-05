@@ -9,7 +9,6 @@ depends:
 - freedesktop-sdk.bst:components/wireless-regdb-bin.bst
 - components/modemmanager.bst
 - components/firmware.bst
-- components/meta-gnome-core-mobile.bst
 - system/common-deps.bst
 - components/os-release.bst
 - components/feedbackd.bst

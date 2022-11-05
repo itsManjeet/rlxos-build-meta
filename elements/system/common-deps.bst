@@ -1,9 +1,7 @@
 kind: stack
 
 depends:
-- components/meta-gnome-core-os-services.bst
-- components/meta-gnome-core-shell.bst
-- components/meta-gnome-core-utilities.bst
+- groups/gnome.bst
 - components/systemd-presets.bst
 - components/xdg-desktop-portal.bst
 - components/xdg-desktop-portal-gnome.bst
