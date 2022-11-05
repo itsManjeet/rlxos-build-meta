@@ -16,7 +16,18 @@ jobs:
       - uses: actions/checkout@v1
       - name: start buildstream build
         run: ${BST} build installer/image.bst
-    
+
+  tests:
+    needs: build
+    runs-on: self-hosted
+    name: test installer image
+    steps:
+      - uses: actions/checkout@v1
+      - name: run testcase
+        run: |
+          ${BST} checkout installer/image.bst checkout --force
+          podman run --rm -it -v tests:/tests:Z registry.opensuse.org/devel/openqa/containers/isotovideo:qemu-x86 qemu_no_kvm=1 casedir=/tests iso=checkout/rlxos-"${GITHUB_REF##*/}"-x86_64.iso
+
   deploy:
     needs: build
     runs-on: self-hosted
