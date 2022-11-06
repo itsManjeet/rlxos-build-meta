@@ -7,6 +7,7 @@ depends:
 - components/cantarell-fonts.bst
 - components/enchant-2.bst
 - components/fcitx5-gtk.bst
+- components/fprintd.bst
 - components/gcab.bst
 - components/gcr.bst
 - components/gcr-3.bst
