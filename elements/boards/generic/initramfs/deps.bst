@@ -14,4 +14,3 @@ depends:
 - freedesktop-sdk.bst:components/wireless-regdb-bin.bst
 - config/plymouth-theme.bst
 - components/libostree.bst
-- system/eos-repartition.bst

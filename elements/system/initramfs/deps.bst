@@ -14,5 +14,4 @@ depends:
 - components/firmware.bst
 - components/libostree.bst
 - config/plymouth-theme.bst
-- system/eos-repartition.bst
 

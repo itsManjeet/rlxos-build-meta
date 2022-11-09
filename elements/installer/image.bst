@@ -2,7 +2,7 @@ kind: script
 
 build-depends:
 - installer/iso-build-deps.bst
-- installer/signed-image-only.bst
+- system/image.bst
 - installer/filesystem.bst
 - installer/initial-scripts.bst
 - installer/initramfs.bst
@@ -25,8 +25,8 @@ config:
     destination: /sysroot/efi
   - element: installer/initial-scripts.bst
     destination: /
-  - element: installer/signed-image-only.bst
-    destination: /sysroot/eosimages
+  - element: system/image.bst
+    destination: /rlxos/images/
 
   commands:
   - mkdir -p /build/images
@@ -50,22 +50,6 @@ config:
       echo $((${size}+(${size}/10)))k
     }
     cat >/build/stage-1/genimage.cfg <<EOF
-    image eosimages.img {
-        mountpoint = "/eosimages"
-        vfat {
-            extraargs = "-F32 -n eosimages"
-        }
-        size = $(get_size /sysroot/eosimages)
-    }
-    image eosimages.gpt.img {
-        hdimage {
-            gpt = true
-        }
-        partition eosimages {
-            image = "eosimages.img"
-            partition-type-uuid = "F"
-        }
-    }
     image efi.img {
         mountpoint = "/efi"
         vfat {
@@ -111,7 +95,7 @@ config:
        "/build/sysroot-stage-2/LiveOS/"
     mv "/build/images/efi.img" \
        "/build/sysroot-stage-2/"
-    mv "/build/images/eosimages.gpt.img" \
+    mv "/rlxos/images/rlxos.sfs" \
        "/build/sysroot-stage-2/"
 
   - |

@@ -1,0 +1,10 @@
+[Unit]
+Description=Mount system squashfs
+RequiresMountsFor=/run/mount/installercd/
+
+[Mount]
+What=/run/mount/installercd/rlxos.sfs
+Where=/run/mount/installercd/squashfs
+Type=squashfs
+Options=loop
+

@@ -4,18 +4,6 @@
 # /etc/os-installer/scripts/prepare.sh
 # The script gets called when an active internet connection was established.
 
-echo 'Preparation started.'
-
-# Pretending to do something
-echo 'Pretending to do something'
-
-for i in {1..5}
-do
-    sleep 1
-    echo -n '.'
-done
-
-echo
-echo 'Preparation completed.'
+echo 'No need to prepare'
 
 exit 0

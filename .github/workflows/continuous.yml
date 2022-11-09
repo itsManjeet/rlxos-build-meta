@@ -26,11 +26,6 @@ jobs:
       - name: checkout image
         run: ${BST} checkout installer/image.bst /storage.rlxos.dev/releases/ --force
   
-      - name: export disk image
-        run: |
-          ${BST} checkout system/image.bst system-image --force
-          mv system-image/disk.img.xz /storage.rlxos.dev/releases/rlxos-"${GITHUB_REF##*/}"-x86_64-disk.img.xz
-
   ostree:
     needs: build
     runs-on: self-hosted

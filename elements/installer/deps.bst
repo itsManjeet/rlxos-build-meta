@@ -4,7 +4,6 @@ depends:
 - components/gnome-console.bst
 - installer/os-installer-extra.bst
 - installer/installer-dirs.bst
-- installer/public-key.bst
 
 - components/plymouth.bst
 - config/plymouth-theme.bst
