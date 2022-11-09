@@ -1,7 +1,7 @@
 kind: stack
 
 depends:
-- installer/eos-installer-extra.bst
+- installer/os-installer-extra.bst
 - installer/installer-dirs.bst
 - installer/public-key.bst
 

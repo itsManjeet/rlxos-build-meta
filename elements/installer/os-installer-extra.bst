@@ -5,7 +5,7 @@ depends:
 - freedesktop-sdk.bst:components/systemd.bst
 
 runtime-depends:
-- installer/eos-installer.bst
+- installer/os-installer.bst
 - components/gdm.bst
 - components/gnome-backgrounds.bst
 - components/gnome-session.bst
@@ -16,27 +16,7 @@ build-depends:
 
 sources:
 - kind: local
-  path: files/eos-installer-extra/eos-images-loop.service
-- kind: local
-  path: files/eos-installer-extra/eos-installer.preset
-- kind: local
-  path: files/eos-installer-extra/run-mount-installercd.mount.in
-- kind: local
-  path: files/eos-installer-extra/eos-installer.session
-- kind: local
-  path: files/eos-installer-extra/eos-installer.service
-- kind: local
-  path: files/eos-installer-extra/eos-installer-session.service
-- kind: local
-  path: files/eos-installer-extra/installer-user.conf
-- kind: local
-  path: files/eos-installer-extra/installer-user-dir.conf
-- kind: local
-  path: files/eos-installer-extra/eos-installer-session.pam
-- kind: local
-  path: files/eos-installer-extra/eos-installer.json
-- kind: local
-  path: files/eos-installer-extra/session.conf
+  path: files/os-installer-extra/
 
 config:
   build-commands:
@@ -48,23 +28,23 @@ config:
   - |
     dir="$(pkg-config --variable=systemdsystemunitdir systemd)"
     install -Dm644 -t "%{install-root}${dir}" \
-      eos-images-loop.service \
+      os-images-loop.service \
       run-mount-installercd.mount \
-      eos-installer-session.service
+      os-installer-session.service
 
   - |
     dir="$(pkg-config --variable=systemduserunitdir systemd)"
     install -Dm644 -t "%{install-root}${dir}" \
-      eos-installer.service
+      os-installer.service
   - |
     dir="$(pkg-config --variable=systemduserunitdir systemd)"
-    install -Dm644 -t "%{install-root}${dir}/gnome-session@eos-installer.target.d" \
+    install -Dm644 -t "%{install-root}${dir}/gnome-session@os-installer.target.d" \
       session.conf
 
   - |
     dir="$(pkg-config --variable=systemdsystempresetdir systemd)"
     install -Dm644 -t "%{install-root}${dir}" \
-      eos-installer.preset
+      os-installer.preset
   - |
     dir="$(pkg-config --variable=sysusersdir systemd)"
     install -Dm644 -t "%{install-root}${dir}" \
@@ -77,13 +57,30 @@ config:
 
   - |
     install -Dm644 -t "%{install-root}%{datadir}/gnome-session/sessions/" \
-      eos-installer.session
+      os-installer.session
   - |
-    install -Dm644 eos-installer-session.pam \
-      "%{install-root}%{sysconfdir}/pam.d/eos-installer-session"
+    install -Dm644 os-installer-session.pam \
+      "%{install-root}%{sysconfdir}/pam.d/os-installer-session"
   - |
     install -Dm644 -t "%{install-root}%{datadir}/gnome-shell/modes/" \
-      eos-installer.json
+      os-installer.json
+
+  - |
+    install -Dm644 -t "%{install-root}%{sysconfdir}/os-installer/" \
+      config.yaml
+    
+  - |
+    install -Dm755 -t "%{install-root}%{sysconfdir}/os-installer/scripts" \
+      configure.sh
+
+  - |
+    install -Dm755 -t "%{install-root}%{sysconfdir}/os-installer/scripts" \
+      install.sh
+
+    - |
+    install -Dm755 -t "%{install-root}%{sysconfdir}/os-installer/scripts" \
+      prepare.sh
+
 
 public:
   bst:

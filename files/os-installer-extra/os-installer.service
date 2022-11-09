@@ -8,5 +8,5 @@ After=gnome-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/libexec/gnome-image-installer
+ExecStart=/usr/bin/os-installer
 Restart=no
