@@ -19,6 +19,7 @@ runtime-depends:
 - freedesktop-sdk.bst:components/util-linux.bst
 
 depends:
+- components/gobject-introspection.bst
 - freedesktop-sdk.bst:components/libatasmart.bst
 - freedesktop-sdk.bst:components/libblockdev.bst
 - freedesktop-sdk.bst:components/libgudev.bst
