@@ -44,6 +44,8 @@ config:
     destination: '/'
   - element: components/genimage.bst
     destination: '/'
+  - element: snap-images/squashfs-tools.bst
+    destination: '/'
 
   commands:
   - mkdir -p "${OSTREE_REPO}"
