@@ -21,6 +21,7 @@ depends:
 - components/gtk+-3.bst
 - components/libadwaita.bst
 - components/pygobject.bst
+- freedesktop-sdk.bst:components/python3-pyyaml.bst
 
 build-depends:
 - freedesktop-sdk.bst:public-stacks/buildsystem-meson.bst
