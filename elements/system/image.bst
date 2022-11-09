@@ -6,6 +6,7 @@ build-depends:
 - system/repo.bst
 - freedesktop-sdk.bst:integration/mtab.bst
 - freedesktop-sdk.bst:components/genimage.bst
+- freedesktop-sdk.bst:snap-images/squashfs-tools.bst
 
 variables:
   (?):
