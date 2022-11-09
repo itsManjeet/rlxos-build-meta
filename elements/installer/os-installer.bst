@@ -10,7 +10,7 @@ sources:
       url: https://gitlab.gnome.org/jwestman/blueprint-compiler.git
 
 
-  ref: 0.2-202-gb73b43068affd5228d03943607a9aadadff333cb
+  ref: 0.2-203-gfc34c0403ccacf307367735418fad743bbad573c
 depends:
 - freedesktop-sdk.bst:bootstrap-import.bst
 - freedesktop-sdk.bst:components/gnupg.bst

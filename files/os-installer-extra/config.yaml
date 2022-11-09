@@ -1,14 +1,14 @@
 distribution_name: 'rlxos'
 internet_connection_required: no
 suggested_languages:
-    - 'ar'
-    - 'de'
-    - 'en'
-    - 'es'
-    - 'fr'
-    - 'ja'
-    - 'ru'
-    - 'zh'
+  - 'ar'
+  - 'de'
+  - 'en'
+  - 'es'
+  - 'fr'
+  - 'ja'
+  - 'ru'
+  - 'zh'
 
 welcome_page:
   logo: '/usr/share/icons/gnome-logo-text.svg'
@@ -18,8 +18,8 @@ welcome_page:
 minimum_disk_size: 5
 
 offer_disk_encryption: no
-skip_user: no
-skip_locale: no
+skip_user: yes
+skip_locale: yes
 
 browser_cmd: 'firefox'
 disks_cmd: 'gnome-disks'
