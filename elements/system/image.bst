@@ -78,4 +78,4 @@ config:
     cp -r "%{sysroot}"/ostree/boot.1/rlxos/*/*/boot/EFI/ "%{sysroot}/boot/"
 
   - |
-    mksquashfs %{sysroot} %{install-root}/rlxos.sfs -b 1048576 -comp zstd -Xcompression-level 22
+    mksquashfs %{sysroot} %{install-root}/rlxos.sfs -b 1048576 -comp xz -Xdict-size 100%
