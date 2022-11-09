@@ -39,6 +39,7 @@ config:
     prepare-image.sh \
        --sysroot /sysroot \
        --seed "%{uuidnamespace}" \
+       --rootpasswd "root" \
        --rootsource LABEL="%{installer-volume-id}" \
        --rootfstype iso9660 \
        --noboot >/dev/null
