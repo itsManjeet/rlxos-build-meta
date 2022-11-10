@@ -28,7 +28,6 @@ config:
   - |
     dir="$(pkg-config --variable=systemdsystemunitdir systemd)"
     install -Dm644 -t "%{install-root}${dir}" \
-      os-images-loop.service \
       run-mount-installercd.mount \
       os-installer-session.service
 
