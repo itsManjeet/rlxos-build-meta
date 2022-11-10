@@ -54,7 +54,7 @@ if [ "${OSI_DEVICE_IS_PARTITION}" -ne "1" ] ; then
     echo "DEVICE PATH: ${OSI_DEVICE_PATH}"
 fi
 
-OSTREE_BRANCH="rlxos/devel/x86_64-user"
+OSTREE_BRANCH="@@OSTREE_BRANCH@@"
 SYSROOT="/sysroot"
 OSTREE_REPO="${SYSROOT}/ostree/repo"
 

@@ -70,17 +70,12 @@ config:
       config.yaml
     
   - |
-    install -Dm755 -t "%{install-root}%{sysconfdir}/os-installer/scripts" \
-      configure.sh
-
-  - |
-    install -Dm755 -t "%{install-root}%{sysconfdir}/os-installer/scripts" \
-      install.sh
-
-    - |
-    install -Dm755 -t "%{install-root}%{sysconfdir}/os-installer/scripts" \
-      prepare.sh
-
+    for script in configure install prepare ; do
+      install -Dm755 -t "%{install-root}%{sysconfdir}/os-installer/scripts" \
+        ${script}.sh
+      sed -i 's#@@OSTREE_BRANCH@@#%{ostree-branch}#g' \
+        "%{install-root}%{sysconfdir}/os-installer/scripts/${script}.sh"
+    done
 
 public:
   bst:
