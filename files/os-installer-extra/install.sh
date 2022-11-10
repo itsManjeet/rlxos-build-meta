@@ -59,7 +59,7 @@ SYSROOT="/sysroot"
 OSTREE_REPO="${SYSROOT}/ostree/repo"
 
 # Make sure EFI parititon
-sudo mklabel ${OSI_DEVICE_EFI_PARTITION} EFI || {
+sudo fatlabel ${OSI_DEVICE_EFI_PARTITION} EFI || {
     echo "Failed to change EFI partition label"
     exit 1
 }
