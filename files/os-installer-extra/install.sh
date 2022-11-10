@@ -45,7 +45,7 @@ if [ "${OSI_DEVICE_IS_PARTITION}" -ne "1" ] ; then
     OSI_DEVICE_EFI_PARTITION=$(lsblk ${OSI_DEVICE_PATH} -no path | sed '2!d')
 
     echo "EFI PARTITION: ${OSI_DEVICE_EFI_PARTITION}"
-    sudo mkfs.fat -F32 ${OSI_DEVICE_EFI_PARTITION} || {
+    sudo mkfs.fat -n EFI -F32 ${OSI_DEVICE_EFI_PARTITION} || {
         echo "Failed to format ${OSI_DEVICE_PATH}"
         exit 1
     }
@@ -58,7 +58,10 @@ OSTREE_BRANCH="rlxos/devel/x86_64-user"
 SYSROOT="/sysroot"
 OSTREE_REPO="${SYSROOT}/ostree/repo"
 
-mkdir -p ${OSTREE_REPO}
+# Make sure EFI parititon
+sudo mklabel ${OSI_DEVICE_EFI_PARTITION} EFI
+
+sudo mkdir -p ${SYSROOT}
 echo "FORMATTING ${OSI_DEVICE_PATH}"
 sudo mkfs.btrfs -f ${OSI_DEVICE_PATH} || {
     echo "Failed to format ${OSI_DEVICE_PATH}"
@@ -91,7 +94,7 @@ sudo ostree admin os-init --sysroot=${SYSROOT} rlxos
 sudo ostree admin deploy --os="rlxos" \
     --sysroot=${SYSROOT} ${OSTREE_BRANCH} \
     --karg="rw" --karg="quiet" --karg="splash" \
-    --karg="console=tty0"
+    --karg="console=tty0" -karg="root=UUID=$(lsblk -no uuid ${OSI_DEVICE_PATH})"
 
 sudo ostree admin set-origin --sysroot="${SYSROOT}" \
     --index=0 \
