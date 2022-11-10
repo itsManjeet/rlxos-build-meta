@@ -113,7 +113,7 @@ sudo ostree init --repo=${OSTREE_REPO} --mode=bare || {
     exit 1
 }
 
-sudo ostree pull-local "/run/mount/squash/ostree/repo" ${OSTREE_BRANCH} || {
+sudo ostree --repo=${OSTREE_REPO} pull-local "/run/mount/squash/ostree/repo" ${OSTREE_BRANCH} || {
     echo "Failed to pull from local repository"
     exit 1
 }
@@ -131,7 +131,7 @@ sudo ostree admin os-init --sysroot=${SYSROOT} rlxos || {
 sudo ostree admin deploy --os="rlxos" \
     --sysroot=${SYSROOT} ${OSTREE_BRANCH} \
     --karg="rw" --karg="quiet" --karg="splash" \
-    --karg="console=tty0" -karg="root=UUID=$(lsblk -no uuid ${OSI_DEVICE_PATH})" || {
+    --karg="console=tty0" --karg="root=UUID=$(lsblk -no uuid ${OSI_DEVICE_PATH})" || {
         echo "OS deployment failed"
         exit 1
     }
@@ -140,7 +140,7 @@ sudo ostree admin set-origin --sysroot="${SYSROOT}" \
     --index=0 \
     rlxos "https://ostree.rlxos.dev/" ${OSTREE_BRANCH}
 
-sudo ostree remote delete rlxos
+sudo ostree remote delete rlxos --repo=${OSTREE_REPO}
 sudo cp -fr "${SYSROOT}"/ostree/boot.1/rlxos/*/*/boot/EFI/ "${SYSROOT}/boot/" || {
     echo "Failed to copy boot files"
     exit 1
