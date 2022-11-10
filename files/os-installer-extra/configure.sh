@@ -46,16 +46,4 @@ echo 'OSI_TIMEZONE             ' $OSI_TIMEZONE
 echo 'OSI_ADDITIONAL_SOFTWARE  ' $OSI_ADDITIONAL_SOFTWARE
 echo ''
 
-# Pretending to do something
-echo 'Pretending to do something'
-
-for i in {1..5}
-do
-    sleep 1
-    echo -n '.'
-done
-
-echo
-echo 'Configuration completed.'
-
 exit 0
