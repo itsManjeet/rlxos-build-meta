@@ -34,63 +34,70 @@ echo 'OSI_ENCRYPTION_PIN       ' $OSI_ENCRYPTION_PIN
 echo ''
 
 if [ "${OSI_DEVICE_IS_PARTITION}" -ne "1" ] ; then
-    parted --script ${OSI_DEVICE_PATH}  \
+    sudo parted --script ${OSI_DEVICE_PATH}  \
         mklabel gpt                     \
         mkpart primary 1MiB 500MiB      \
         set 1 esp on                    \
-        mkpart primary 500MiB 100%
+        mkpart primary 500MiB 100% || {
+            echo "Failed to partition ${OSI_DEVICE_PATH}"
+            exit 1
+        }
     OSI_DEVICE_EFI_PARTITION=$(lsblk ${OSI_DEVICE_PATH} -no path | sed '2!d')
 
     echo "EFI PARTITION: ${OSI_DEVICE_EFI_PARTITION}"
-    mkfs.fat -f -F32 ${OSI_DEVICE_EFI_PARTITION}
+    sudo mkfs.fat -F32 ${OSI_DEVICE_EFI_PARTITION} || {
+        echo "Failed to format ${OSI_DEVICE_PATH}"
+        exit 1
+    }
 
     OSI_DEVICE_PATH=$(lsblk ${OSI_DEVICE_PATH} -no path | sed '3!d')
     echo "DEVICE PATH: ${OSI_DEVICE_PATH}"
 fi
 
+OSTREE_BRANCH="rlxos/devel/x86_64-user"
+SYSROOT="/sysroot"
+OSTREE_REPO="${SYSROOT}/ostree/repo"
+
+mkdir -p ${OSTREE_REPO}
 echo "FORMATTING ${OSI_DEVICE_PATH}"
-mkfs.btrfs -f ${OSI_DEVICE_PATH} || {
+sudo mkfs.btrfs -f ${OSI_DEVICE_PATH} || {
     echo "Failed to format ${OSI_DEVICE_PATH}"
     exit 1
 }
 
-echo "MOUNTING ${OSI_DEVICE_PATH} /mnt"
-mount ${OSI_DEVICE_PATH} /mnt/ || {
+echo "MOUNTING ${OSI_DEVICE_PATH} ${SYSROOT}"
+sudo mount ${OSI_DEVICE_PATH} ${SYSROOT} || {
     echo "Failed to mount ${OSI_DEVICE_PATH}"
     exit 1
 }
 
 
-mkdir -p /mnt/boot
-mount ${OSI_DEVICE_EFI_PARTITION} /mnt/boot/ || {
-    umount ${OSI_DEVICE_PATH}
+sudo mkdir -p ${SYSROOT}/boot
+sudo mount ${OSI_DEVICE_EFI_PARTITION} ${SYSROOT}/boot/ || {
+    sudo umount ${OSI_DEVICE_PATH}
 
-    echo "Failed to mount ${OSI_DEVICE_EFI_PARTITION} /mnt/boot"
+    echo "Failed to mount ${OSI_DEVICE_EFI_PARTITION} ${SYSROOT}/boot"
     exit 1
 }
 
-OSTREE_BRANCH="rlxos/devel/x86_64-user"
-SYSROOT="/mnt"
-OSTREE_REPO="${SYSROOT}/ostree/repo"
+sudo mkdir -p ${OSTREE_REPO}
+sudo ostree init --repo=${OSTREE_REPO} --mode=bare
 
-mkdir -p ${OSTREE_REPO}
-ostree init --repo=${OSTREE_REPO} --mode=bare
+sudo ostree pull-local "/run/mount/squash/ostree/repo" ${OSTREE_BRANCH}
 
-ostree pull-local "/run/mount/squash" ${OSTREE_BRANCH}
+sudo ostree admin init-fs ${SYSROOT}
+sudo ostree admin os-init --sysroot=${SYSROOT} rlxos
 
-ostree admin init-fs ${SYSROOT}
-ostree admin os-init --sysroot=${SYSROOT} rlxos
-
-ostree admin deploy --os="rlxos" \
+sudo ostree admin deploy --os="rlxos" \
     --sysroot=${SYSROOT} ${OSTREE_BRANCH} \
     --karg="rw" --karg="quiet" --karg="splash" \
     --karg="console=tty0"
 
-ostree admin set-origin --sysroot="${SYSROOT}" \
+sudo ostree admin set-origin --sysroot="${SYSROOT}" \
     --index=0 \
     rlxos "https://ostree.rlxos.dev/" ${OSTREE_BRANCH}
 
-ostree remote delete rlxos
-cp -r "${SYSROOT}"/ostree/boot.1/rlxos/*/*/boot/EFI/ "${SYSROOT}/boot/"
+sudo ostree remote delete rlxos
+sudo cp -r "${SYSROOT}"/ostree/boot.1/rlxos/*/*/boot/EFI/ "${SYSROOT}/boot/"
 
 exit 0

@@ -16,6 +16,7 @@ depends:
 - freedesktop-sdk.bst:components/shadow.bst
 - freedesktop-sdk.bst:vm/mesa-default.bst
 - freedesktop-sdk.bst:vm/config/journald.bst
+- freedesktop-sdk.bst:vm/config/sudo.bst
 
 - components/spice-vdagent.bst
 - components/os-release.bst
