@@ -28,9 +28,6 @@ config:
   - |
     dir="$(pkg-config --variable=systemdsystemunitdir systemd)"
     install -Dm644 -t "%{install-root}${dir}" \
-      os-images-loop.service \
-      run-mount-installercd.mount \
-      run-mount-squash.mount \
       os-installer-session.service
 
   - |
@@ -74,6 +71,10 @@ config:
     for script in configure install prepare ; do
       install -Dm755 -t "%{install-root}%{sysconfdir}/os-installer/scripts" \
         ${script}.sh
+
+      sed -i 's#@@VOLUME_ID@@#%{installer-volume-id}#g' \
+        "%{install-root}%{sysconfdir}/os-installer/scripts/${script}.sh"
+
       sed -i 's#@@OSTREE_BRANCH@@#%{ostree-branch}#g' \
         "%{install-root}%{sysconfdir}/os-installer/scripts/${script}.sh"
     done

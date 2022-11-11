@@ -4,6 +4,5 @@
 # /etc/os-installer/scripts/prepare.sh
 # The script gets called when an active internet connection was established.
 
-echo 'No need to prepare'
 
 exit 0

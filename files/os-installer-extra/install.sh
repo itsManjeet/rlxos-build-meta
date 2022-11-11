@@ -33,6 +33,29 @@ echo 'OSI_USE_ENCRYPTION       ' $OSI_USE_ENCRYPTION
 echo 'OSI_ENCRYPTION_PIN       ' $OSI_ENCRYPTION_PIN
 echo ''
 
+echo 'Mounting Installer ISO'
+sudo mkdir -p /run/mount/installercd || {
+    echo "Failed to create installer directory"
+    exit 1
+}
+sudo mount -t iso9660 /dev/disk/by-label/@@VOLUME_ID@@ /run/mount/installercd || {
+    echo "Failed to mount /dev/disk/by-label/@@VOLUME_ID@@"
+    exit 1
+}
+
+echo 'Mounting System Image'
+sudo mkdir -p /run/mount/squash || {
+    echo 'Failed to create squash directory'
+    exit 1
+}
+
+sudo mount -t squashfs /run/mount/installercd/rlxos.sfs \
+    /run/mount/squash || {
+        echo 'Failed to mount system image'
+        exit 1
+    }
+
+
 if [ "${OSI_DEVICE_IS_PARTITION}" -ne "1" ] ; then
     sudo parted --script ${OSI_DEVICE_PATH}  \
         mklabel gpt                     \
@@ -128,10 +151,12 @@ sudo ostree admin os-init --sysroot=${SYSROOT} rlxos || {
     exit 1
 }
 
+UUID=$(sudo lsblk -no uuid ${OSI_DEVICE_PATH})
+
 sudo ostree admin deploy --os="rlxos" \
     --sysroot=${SYSROOT} ${OSTREE_BRANCH} \
     --karg="rw" --karg="quiet" --karg="splash" \
-    --karg="console=tty0" --karg="root=UUID=$(lsblk -no uuid ${OSI_DEVICE_PATH})" || {
+    --karg="console=tty0" --karg="root=UUID=$UUID" || {
         echo "OS deployment failed"
         exit 1
     }

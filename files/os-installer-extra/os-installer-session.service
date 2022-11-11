@@ -4,7 +4,6 @@ After=systemd-user-sessions.service
 Wants=dbus.socket
 After=dbus.socket
 After=session-c1.scope
-After=run-mount-squash.mount
 Before=graphical.target
 Conflicts=getty@tty1.service
 After=getty@tty1.service
