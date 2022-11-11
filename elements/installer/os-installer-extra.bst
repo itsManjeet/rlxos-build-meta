@@ -19,11 +19,6 @@ sources:
   path: files/os-installer-extra/
 
 config:
-  build-commands:
-  - |
-    sed 's/@VOLUME_ID@/%{installer-volume-id}/g' run-mount-installercd.mount.in \
-      >run-mount-installercd.mount
-
   install-commands:
   - |
     dir="$(pkg-config --variable=systemdsystemunitdir systemd)"
