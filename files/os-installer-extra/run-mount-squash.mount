@@ -1,0 +1,8 @@
+[Unit]
+Description=Mount rlxos squash
+
+[Mount]
+What=/run/mount/installercd/rlxos.sfs
+Where=/run/mount/squash
+Type=squashfs
+Options=defaults
