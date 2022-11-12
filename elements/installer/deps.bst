@@ -2,6 +2,7 @@ kind: stack
 
 depends:
 - components/gnome-console.bst
+- components/gnome-disk-utility.bst
 - installer/os-installer-extra.bst
 - installer/installer-dirs.bst
 

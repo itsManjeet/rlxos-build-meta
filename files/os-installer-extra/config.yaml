@@ -24,3 +24,4 @@ skip_locale: yes
 browser_cmd: 'firefox'
 disks_cmd: 'gnome-disks'
 wifi_cmd: 'gnome-control-center wifi'
+terminal_cmd: 'kgx'
