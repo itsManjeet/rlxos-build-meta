@@ -11,7 +11,7 @@ suggested_languages:
   - 'zh'
 
 welcome_page:
-  logo: '/usr/share/icons/gnome-logo-text.svg'
+  logo: '/usr/share/icons/logo.svg'
   text: 'Welcome to rlxos GNU/Linux'
   usage: yes
 
@@ -21,7 +21,6 @@ offer_disk_encryption: no
 skip_user: yes
 skip_locale: yes
 
-browser_cmd: 'firefox'
-disks_cmd: 'gnome-disks'
+browser_cmd: 'epiphany'
+disks_cmd: 'sudo gnome-disks'
 wifi_cmd: 'gnome-control-center wifi'
-terminal_cmd: 'kgx'

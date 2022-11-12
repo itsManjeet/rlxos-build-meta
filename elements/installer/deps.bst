@@ -7,6 +7,7 @@ depends:
 - installer/installer-dirs.bst
 
 - components/plymouth.bst
+- config/branding.bst
 - config/plymouth-theme.bst
 - config/default-wallpaper.bst
 
