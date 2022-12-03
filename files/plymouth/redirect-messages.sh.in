@@ -1,0 +1,10 @@
+#!/bin/sh
+
+journalctl --quiet -f -n0 --system -t systemd -o cat | while read -r line; do
+	MESSAGE="$(echo $line | sed 's/[^[:print:]]//' | sed 's/\(.\{200\}\).*/\1.../')"
+	plymouth display-message --text="$MESSAGE"
+	if [ $? -ne 0 ]; then
+		break
+	fi
+done
+echo "Plymouth died, exiting..."

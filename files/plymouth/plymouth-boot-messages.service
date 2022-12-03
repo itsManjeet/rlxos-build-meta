@@ -1,0 +1,14 @@
+[Unit]
+Description=Display boot messages on the plymouth screen
+DefaultDependencies=no
+
+#After=plymouth-start.service
+#Requires=plymouth-start.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/redirect-messages.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target

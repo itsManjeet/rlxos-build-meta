@@ -1,0 +1,24 @@
+From 623b6128b1c5b8f675a161d496c0b514a6d2f78b Mon Sep 17 00:00:00 2001
+From: "manjeet.singh1" <itsmanjeet1998@gmail.com>
+Date: Wed, 23 Nov 2022 17:41:51 +0530
+Subject: [PATCH 2/2] ADDED fixed format
+
+---
+ src/widgets/image_page.rs | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/widgets/image_page.rs b/src/widgets/image_page.rs
+index e9bd86e..88a9610 100644
+--- a/src/widgets/image_page.rs
++++ b/src/widgets/image_page.rs
+@@ -65,7 +65,6 @@ mod imp {
+                 .flags(glib::BindingFlags::SYNC_CREATE)
+                 .build();
+ 
+-
+             head_label.add_css_class("title-1");
+             container.append(&head_label);
+ 
+-- 
+2.38.1
+

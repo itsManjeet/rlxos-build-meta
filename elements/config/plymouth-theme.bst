@@ -1,0 +1,22 @@
+kind: manual
+
+sources:
+- kind: local
+  path: files/plymouth
+
+runtime-depends:
+- components/plymouth.bst
+
+build-depends:
+- freedesktop-sdk.bst:bootstrap-import.bst
+
+config:
+  install-commands:
+  - install -Dm644 -t "%{install-root}%{datadir}/pixmaps" rlxos.png
+  - install -Dm644 plymouthd.defaults "%{install-root}%{datadir}/plymouth/plymouthd.defaults"
+  - install -Dm644 rlxos.png "%{install-root}%{datadir}/plymouth/themes/spinner/watermark.png"
+
+public:
+  bst:
+    overlap-whitelist:
+    - '%{datadir}/plymouth/plymouthd.defaults'
