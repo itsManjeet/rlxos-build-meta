@@ -183,7 +183,7 @@ Project Link: [https://github.com/itsmanjeet](https://github.com/itsmanjeet)
 [issues-shield]: https://img.shields.io/github/issues/itsmanjeet/rlxos-build-meta.svg?style=for-the-badge
 [issues-url]: https://github.com/itsmanjeet/rlxos-build-meta/issues
 [license-shield]: https://img.shields.io/github/license/itsmanjeet/rlxos-build-meta.svg?style=for-the-badge
-[license-url]: https://github.com/itsmanjeet/rlxos-build-meta/blob/master/LICENSE.txt
+[license-url]: https://github.com/itsmanjeet/rlxos-build-meta/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/itsmanjeet
 [product-screenshot]: files/screenshot.webp
