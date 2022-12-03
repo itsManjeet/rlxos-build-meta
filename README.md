@@ -58,7 +58,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://rlxos.dev)
+<div align="center">
+  <a href="https://github.com/itsmanjeet/rlxos-build-meta">
+    <img src="files/screenshot.webp" alt="Logo" width="350">
+  </a>
+</div>
 
 rlxos GNU/Linux is a general purpose and independent Linux based operating system aims to be the entry level distro for new users. rlxos implements the bleeding edge GNU/Linux technology for a truly modern operating system.
 
