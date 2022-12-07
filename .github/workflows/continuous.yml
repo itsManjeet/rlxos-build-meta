@@ -16,12 +16,7 @@ jobs:
     runs-on: self-hosted
     timeout-minutes: 46000
     steps:
-      - uses: actions/checkout@v1
-      - name: prequisties
-        run: |
-          sudo apt update && sudo apt -y install golang python3-pip bubblewrap lzip python3-psutil ostree libfuse2
-          pip3 install buildstream buildstream-external
-        
+      - uses: actions/checkout@v1       
       - name: start buildstream build
         run: ${BST} build installer/image.bst
 
