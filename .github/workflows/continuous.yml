@@ -17,6 +17,11 @@ jobs:
     timeout-minutes: 46000
     steps:
       - uses: actions/checkout@v1
+      - name: prequisties
+        run: |
+          sudo apt update && sudo apt -y install python3-pip bubblewrap lzip python3-psutil ostree libfuse2
+          pip3 install buildstream buildstream-external
+        
       - name: start buildstream build
         run: ${BST} build installer/image.bst
 
