@@ -31,6 +31,8 @@ depends:
 - components/thermald.bst
 - components/firmware.bst
 - components/appimaged.bst
+- components/source.bst
+- components/bolt.bst
 
 - config/default-wallpaper.bst
 - config/gnome-override.bst

@@ -18,12 +18,12 @@ sources:
 
 build-depends:
 - freedesktop-sdk.bst:public-stacks/buildsystem-cmake.bst
-- components/libyaml-cpp.bst
 
 depends:
 - freedesktop-sdk.bst:bootstrap-import.bst
 - freedesktop-sdk.bst:components/systemd.bst
 - freedesktop-sdk.bst:components/curl.bst
+- components/libyaml-cpp.bst
 
 config:
   install-commands:
