@@ -1,0 +1,138 @@
+From 76b350b9fe3e593c6c41dd8a4fa7c1f5e876ff05 Mon Sep 17 00:00:00 2001
+From: "manjeet.singh1" <manjeet.singh@bobble.ai>
+Date: Mon, 12 Dec 2022 18:46:12 +0530
+Subject: [PATCH 1/2] removed discord backend
+
+---
+ bolt/CMakeLists.txt             |  1 -
+ bolt/backend/backend.cc         |  2 --
+ bolt/backend/discord/discord.cc | 50 ---------------------------------
+ bolt/backend/discord/discord.hh | 16 -----------
+ model/distance.model            |  4 ---
+ 5 files changed, 73 deletions(-)
+ delete mode 100644 bolt/backend/discord/discord.cc
+ delete mode 100644 bolt/backend/discord/discord.hh
+ delete mode 100644 model/distance.model
+
+diff --git a/bolt/CMakeLists.txt b/bolt/CMakeLists.txt
+index 0df584c..d0cee09 100644
+--- a/bolt/CMakeLists.txt
++++ b/bolt/CMakeLists.txt
+@@ -18,7 +18,6 @@ add_library(bolt SHARED ${Bolt_Files})
+ target_link_libraries(bolt 
+     ${YAML_CPP_LIBRARIES}
+     ${CURL}
+-    dpp
+     systemd)
+ 
+ install(
+diff --git a/bolt/backend/backend.cc b/bolt/backend/backend.cc
+index a816935..d6224d8 100644
+--- a/bolt/backend/backend.cc
++++ b/bolt/backend/backend.cc
+@@ -1,11 +1,9 @@
+ #include "backend.hh"
+ using namespace bolt::backend;
+ 
+-#include "discord/discord.hh"
+ #include "socket/socket.hh"
+ 
+ #define BACKEND_LIST    \
+-  X(Discord, "discord") \
+   X(Socket, "socket")
+ 
+ Backend::ptr Backend::create(YAML::Node const& node) {
+diff --git a/bolt/backend/discord/discord.cc b/bolt/backend/discord/discord.cc
+deleted file mode 100644
+index fdcd423..0000000
+--- a/bolt/backend/discord/discord.cc
++++ /dev/null
+@@ -1,50 +0,0 @@
+-#include "discord.hh"
+-using namespace bolt::backend;
+-
+-#include <algorithm>
+-#include <regex>
+-
+-bool Discord::start(Bolt* bolt) {
+-  if (!mNode["token"]) {
+-    mError = "no token specified";
+-    return false;
+-  }
+-
+-  std::string token = mNode["token"].as<std::string>();
+-  mBackend = std::make_shared<dpp::cluster>(token);
+-
+-  if (mNode["logging"] && mNode["logging"].as<bool>()) {
+-    mBackend->on_log(dpp::utility::cout_logger());
+-  }
+-
+-  long author_id = -1;
+-  if (mNode["author-id"]) {
+-    author_id = mNode["author-id"].as<long>();
+-  }
+-
+-  mBackend->on_message_create([&](const dpp::message_create_t& event) {
+-    auto iter = std::find_if(
+-        event.msg.mentions.begin(), event.msg.mentions.end(),
+-        [&](std::pair<dpp::user, dpp::guild_member> const& d) -> bool {
+-          return d.first.id == mBackend->me.id;
+-        });
+-
+-    if (iter == event.msg.mentions.end()) {
+-      return;
+-    }
+-
+-    std::string sentence = event.msg.content;
+-    std::regex rgx("<@[^>]*>");
+-
+-    sentence = std::regex_replace(sentence, rgx, "");
+-    auto [score, prediction] = bolt->predict(sentence);
+-    mBackend->message_create(dpp::message(event.msg.channel_id, prediction));
+-  });
+-
+-  mBackend->on_ready([&](const dpp::ready_t& event) {
+-
+-  });
+-
+-  mBackend->start(false);
+-  return true;
+-}
+\ No newline at end of file
+diff --git a/bolt/backend/discord/discord.hh b/bolt/backend/discord/discord.hh
+deleted file mode 100644
+index 1ae906c..0000000
+--- a/bolt/backend/discord/discord.hh
++++ /dev/null
+@@ -1,16 +0,0 @@
+-#include <dpp/dpp.h>
+-
+-#include "../../bolt.hh"
+-#include "../backend.hh"
+-
+-namespace bolt::backend {
+-class Discord : public Backend {
+- private:
+-  std::shared_ptr<dpp::cluster> mBackend;
+-
+- public:
+-  Discord(YAML::Node const& node) : Backend(node) {}
+-
+-  bool start(Bolt* bolt);
+-};
+-}  // namespace bolt::backend
+\ No newline at end of file
+diff --git a/model/distance.model b/model/distance.model
+deleted file mode 100644
+index dd1083f..0000000
+--- a/model/distance.model
++++ /dev/null
+@@ -1,4 +0,0 @@
+-hello:hey there
+-how are you:i am fine
+-what are you doing:enjoying life
+-uefi:@shell#[ -e /sys/firmware/efi/efivars ] && echo "uefi supported" || echo "uefi not supported"
+\ No newline at end of file
+-- 
+2.34.1
+

@@ -1,0 +1,43 @@
+From 8e2eccbf16e32a3092fbcd6aa4ec19af5914af85 Mon Sep 17 00:00:00 2001
+From: "manjeet.singh1" <manjeet.singh@bobble.ai>
+Date: Mon, 12 Dec 2022 19:16:31 +0530
+Subject: [PATCH 2/2] fixed icon install
+
+---
+ CMakeLists.txt        | 3 +--
+ assets/CMakeLists.txt | 5 +----
+ 2 files changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 4ca0825..e3b8826 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -7,7 +7,6 @@ add_definitions("-DDEBUG")
+ set(EXTERNAL_DIR "${CMAKE_SOURCE_DIR}/external")
+ add_subdirectory(docs)
+ add_subdirectory(bolt)
+-add_subdirectory(assets)
+ add_subdirectory(gnome-search-provider)
+ add_subdirectory(services)
+ add_executable(bot "main.cc")
+@@ -16,4 +15,4 @@ install(
+     TARGETS bot
+     RUNTIME DESTINATION bin
+     RENAME bolt
+-)
+\ No newline at end of file
++)
+diff --git a/assets/CMakeLists.txt b/assets/CMakeLists.txt
+index 6ccb462..93fef4e 100644
+--- a/assets/CMakeLists.txt
++++ b/assets/CMakeLists.txt
+@@ -1,4 +1 @@
+-install_files(
+-    FILES icon.svg
+-    DESTINATION share/icons/hicolor/apps/scalable/
+-)
+\ No newline at end of file
++install_files(icon.svg share/icons/hicolor/apps/scalable/)
+-- 
+2.34.1
+
