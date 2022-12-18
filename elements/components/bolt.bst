@@ -39,6 +39,7 @@ config:
   - |
     install -Dm755 -t %{install-root}%{libexecdir} gnome-search-provider/gnome-search-provider.py
     install -Dm644 -t %{install-root}%{datadir}/applications gnome-search-provider/dev.rlxos.Bolt.SearchProvider.desktop
+    echo -e "\nExec=%{libexedir}/gnome-search-provider.py" >> %{install-root}%{datadir}/applications/dev.rlxos.Bolt.SearchProvider.desktop
     install -Dm644 -t %{install-root}%{datadir}/gnome-shell/search-providers gnome-search-provider/dev.rlxos.Bolt.SearchProvider.ini
     install -Dm644 -t %{install-root}%{datadir}/dbus-1/services gnome-search-provider/dev.rlxos.Bolt.SearchProvider.service.dbus
 
