@@ -1,0 +1,44 @@
+{
+    "ModelPath": "model.json",
+    "class-words": {
+        "greeting": [
+            "hello",
+            "hey",
+            "there",
+            "how",
+            "are",
+            "you"
+        ],
+        "weather": [
+            "how",
+            "is",
+            "the",
+            "weather",
+            "climate",
+            "condition"
+        ]
+    },
+    "corpus-words": {
+        "are": 1,
+        "climate": 1,
+        "condition": 1,
+        "hello": 1,
+        "hey": 1,
+        "how": 2,
+        "is": 1,
+        "the": 1,
+        "there": 1,
+        "weather": 2,
+        "you": 1
+    },
+    "responses": {
+        "greeting": {
+            "Plugin": "direct",
+            "Data": "Hey their,how are you,what are you doing"
+        },
+        "weather": {
+            "Plugin": "api",
+            "Data": "title:https://jsonplaceholder.typicode.com/posts"
+        }
+    }
+}

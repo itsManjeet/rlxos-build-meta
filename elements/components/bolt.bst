@@ -25,7 +25,7 @@ config:
   - go build -o bolt_server.exe -trimpath -ldflags="-s -w" bolt/server
   install-commands:
   - install -v -D -m0755 bolt_server.exe %{install-root}%{bindir}/bolt
-
+  - install -v -D -m0644 -t %{install-root}%{datadir}/bolt model.json
   - |
     unitdir="$(pkg-config --variable=systemduserunitdir systemd)"
     install -Dm644 -t %{install-root}${unitdir} service/bolt.service
