@@ -31,7 +31,7 @@ config:
     install -Dm644 -t %{install-root}${unitdir} service/bolt.service
     install -Dm644 -t %{install-root}${unitdir} service/bolt.socket
     install -Dm644 -t %{install-root}${unitdir} gnome-search-provider/dev.rlxos.Bolt.SearchProvider.service
-
+    sed -i "s#/usr/lib/bolt/#%{libexecdir}#g" %{install-root}${unitdir}/dev.rlxos.Bolt.SearchProvider.service
   - |
     presetdir="$(pkg-config --variable=systemduserpresetdir systemd)"
     install -Dm644 -t %{install-root}${presetdir} bolt.preset
