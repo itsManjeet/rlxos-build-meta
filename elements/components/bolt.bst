@@ -5,7 +5,7 @@ sources:
   track: master
   url: github:itsmanjeet/bolt.git
 
-  ref: 5a060e0f4564441fde0bb6f17dfac0b77b39bdc2
+  ref: b428c33d52cb22eb8a32ff0c882f52aed64b647b
 - kind: go-vendor
   ref: 2290a86fb256d292b17d5fbc6e7651024ccef2d772616945ecd064bcf453d07c
 - kind: local
@@ -42,4 +42,5 @@ config:
     echo -e "\nExec=%{libexecdir}/gnome-search-provider.py" >> %{install-root}%{datadir}/applications/dev.rlxos.Bolt.SearchProvider.desktop
     install -Dm644 -t %{install-root}%{datadir}/gnome-shell/search-providers gnome-search-provider/dev.rlxos.Bolt.SearchProvider.ini
     install -Dm644 -t %{install-root}%{datadir}/dbus-1/services gnome-search-provider/dev.rlxos.Bolt.SearchProvider.service.dbus
+    install -Dm644 assets/icon.svg %{install-root}%{datadir}/icons/bolt.svg
 
