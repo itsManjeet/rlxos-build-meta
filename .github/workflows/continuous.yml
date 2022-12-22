@@ -15,15 +15,20 @@ jobs:
     name: generate cache
     runs-on: self-hosted
     timeout-minutes: 46000
+    strategy:
+      matrix:
+        variant:
+          - user
+          - devel
     steps:
       - uses: actions/checkout@v1       
       - name: start buildstream build
-        run: ${BST} build installer/image.bst
+        run: ${BST} -o variant ${{matrix.variant}} build installer/image.bst
 
       - name: checkout image
-        run: ${BST} checkout installer/image.bst /storage.rlxos.dev/releases/ --force
+        run: ${BST} -o variant ${{matrix.variant}} checkout installer/image.bst /storage.rlxos.dev/releases/ --force
   
       - name: commit ostree
         run: |
           echo "${{ github.event.head_commit.message }}" > commit_body
-          BRANCH="${GITHUB_REF##*/}" OSTREE_REPO="/ostree.rlxos.dev" OSTREE_GPG="/gpg.rlxos.dev" make update-ostree
+          VARIANT=${{matrix.variant}} BRANCH="${GITHUB_REF##*/}" OSTREE_REPO="/ostree.rlxos.dev" OSTREE_GPG="/gpg.rlxos.dev" make update-ostree

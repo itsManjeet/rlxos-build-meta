@@ -10,3 +10,12 @@ options:
     - x86_64
     - ppc64le
     - riscv64
+  
+  variant:
+    type: enum
+    description: Desktop variant
+    variable: variant
+    values:
+    - user
+    - devel
+    default: user
