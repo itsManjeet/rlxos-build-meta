@@ -1,7 +1,7 @@
 kind: stack
 
 depends:
-- system/common-deps.bst
+- system/deps.bst
 - components/os-release.bst
 
 - boards/raspberrypi-4/initramfs.bst

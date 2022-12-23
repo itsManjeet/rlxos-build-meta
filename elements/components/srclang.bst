@@ -4,7 +4,7 @@ sources:
   track: master
   url: github:itsManjeet/srclang.git
 
-  ref: 704923edfd3a4befd099ed6072eacaeba66a8abc
+  ref: a6cc66be19610e0992a431850911ba7820ba6065
 build-depends:
 - freedesktop-sdk.bst:public-stacks/buildsystem-cmake.bst
 

@@ -1,6 +1,7 @@
 BRANCH ?= rolling
 ARCH ?= $(shell uname -m)
-OSTREE_BRANCH := rlxos/$(BRANCH)/$(ARCH)-user
+VARIANT ?= user
+OSTREE_BRANCH := rlxos/$(BRANCH)/$(ARCH)-$(VARIANT)
 OSTREE_REPO ?= ostree-repo
 OSTREE_GPG ?= ostree-gpg
 define OSTREE_GPG_CONFIG

@@ -1,5 +1,6 @@
 kind: stack
 depends:
+- groups/base.bst
 - components/gdm.bst
 - components/gnome-backgrounds.bst
 - components/gnome-bluetooth.bst
@@ -32,3 +33,18 @@ depends:
 - components/gnome-disk-utility.bst
 - components/gparted.bst
 - components/gnome-system-monitor.bst
+- components/networkmanager-openvpn.bst
+- components/networkmanager-openconnect.bst
+- components/networkmanager-fortisslvpn.bst
+- components/networkmanager-vpnc.bst
+- components/ibus-anthy.bst
+- components/ibus-hangul.bst
+- components/ibus-libpinyin.bst
+- components/xdg-desktop-portal.bst
+- components/xdg-desktop-portal-gnome.bst
+- components/xdg-desktop-portal-gtk.bst
+- components/default-terminal.bst
+
+- config/default-wallpaper.bst
+- config/gnome-override.bst
+- config/plymouth-theme.bst

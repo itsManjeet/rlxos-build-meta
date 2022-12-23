@@ -9,7 +9,7 @@ depends:
 - freedesktop-sdk.bst:components/wireless-regdb-bin.bst
 - components/modemmanager.bst
 - components/firmware.bst
-- system/common-deps.bst
+- system/deps.bst
 - components/os-release.bst
 - components/feedbackd.bst
 - components/calls.bst

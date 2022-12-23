@@ -1,6 +1,11 @@
 kind: stack
 
 depends:
-- system/common-deps.bst
+- groups/gnome.bst
+- groups/extra.bst
 - system/initramfs.bst
-- components/os-release.bst
+(?):
+  - variant == "devel":
+      depends:
+        (>):
+        - groups/devel.bst 
