@@ -5,6 +5,8 @@ depends:
 - freedesktop-sdk.bst:components/bash-completion.bst
 - components/fish.bst
 
+- components/firmware.bst
+
 - freedesktop-sdk.bst:components/util-linux-full.bst
 - freedesktop-sdk.bst:components/usbutils.bst
 - freedesktop-sdk.bst:components/pciutils.bst
