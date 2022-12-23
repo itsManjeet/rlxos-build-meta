@@ -7,11 +7,10 @@ build-depends:
 
 config:
   exclude:
-    - source
+    - debug
+    - doc
   (?):
   - variant == "user":
       exclude:
         (>):
         - devel
-        - debug
-        - doc
