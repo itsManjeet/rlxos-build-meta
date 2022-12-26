@@ -102,6 +102,6 @@ config:
       OPENBLAS_ROOT="%{build-root}/kaldi/tools/OpenBLAS/install"
 
   install-commands:
-  - install -d -m755 %{install-root}/usr/lib
-  - install -D -m644 vosk-api/src/vosk_api.h -t %{install-root}/usr/include/
-  - cp -dr --no-preserve='ownership' vosk-api/src/*.so* %{install-root}/usr/lib/
+  - install -d -m755 %{install-root}/%{libdir}
+  - install -D -m644 vosk-api/src/vosk_api.h -t %{install-root}/%{includedir}/
+  - cp -dr --no-preserve='ownership' vosk-api/src/*.so* %{install-root}/%{libdir}/

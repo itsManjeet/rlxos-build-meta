@@ -12,3 +12,4 @@ build-depends:
 
 depends:
 - freedesktop-sdk.bst:bootstrap-import.bst
+- components/vosk-api.bst
