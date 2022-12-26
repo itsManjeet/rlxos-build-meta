@@ -1,15 +1,15 @@
 kind: manual
 
 sources:
-- kind: tar
-  url: https://github.com/89luca89/distrobox/archive/refs/tags/1.4.1.tar.gz
-
-  ref: be3266f77011b30da5d0035e246d4e4a9360b7c90fbd8b90ac581165a00217b8
+- kind: git_tag
+  url: github:89luca89/distrobox
+  track: main
+  ref: 1.4.2.1-1-g0e24aae53ae6e2fd6901db3556de9e6b261e7a6f
 build-depends:
 - freedesktop-sdk.bst:bootstrap-import.bst
 
 runtime-depends:
-- freedesktop-sdk.bst:components/podman.bst
+- components/podman.bst
 
 config:
   install-commands:
