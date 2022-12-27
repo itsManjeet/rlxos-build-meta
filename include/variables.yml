@@ -1,6 +1,6 @@
 variables:
   branch-nice-name: '%{branch}'
-  installer-volume-id: "rlxos-%{branch-nice-name}-%{arch}"
+  installer-volume-id: "rlxos-%{branch-nice-name}-%{variant}-%{arch}"
   ostree-layer: '%{variant}'
   ostree-branch: "rlxos/%{branch}/%{arch}-%{ostree-layer}"
   ostree-remote-url: "https://ostree.rlxos.dev/"
