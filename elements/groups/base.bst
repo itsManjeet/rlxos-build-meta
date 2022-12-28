@@ -6,6 +6,7 @@ depends:
 - components/fish.bst
 
 - components/firmware.bst
+- components/zram-generator.bst
 
 - freedesktop-sdk.bst:components/util-linux-full.bst
 - freedesktop-sdk.bst:components/usbutils.bst
