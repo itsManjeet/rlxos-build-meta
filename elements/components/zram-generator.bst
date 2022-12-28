@@ -127,6 +127,9 @@ sources:
   - name: winapi-x86_64-pc-windows-gnu
     version: 0.4.0
     sha: 712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f
+
+- kind: local
+  path: files/zram-generator.conf
 build-depends:
 - freedesktop-sdk.bst:components/rust.bst
 - freedesktop-sdk.bst:public-stacks/buildsystem-autotools.bst
@@ -135,10 +138,7 @@ depends:
 
 config:
   build-commands:
-  - make build RONN=true
-  - |
-    touch man/zram-generator.8
-    touch man/zram-generator.conf.5
+  - make build RONN=true NOMAN=1
   install-commands:
-  - make install PREFIX=%{prefix} DESTDIR=%{install-root} RONN=true
-  - rm -rf %{install-root}%{mandir}
+  - make install PREFIX=%{prefix} DESTDIR=%{install-root} RONN=true NOMAN=1
+  - install -Dm 0644 -t %{install-root}%{sysconfdir}/systemd/ zram-generator.conf
