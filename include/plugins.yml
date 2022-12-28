@@ -17,3 +17,4 @@ plugins:
     ostree: 0
   sources:
     go-vendor: 0
+    cargo-lock: 0
