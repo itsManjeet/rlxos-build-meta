@@ -1,11 +1,10 @@
 kind: stack
 
 depends:
-- groups/gnome.bst
-- groups/extra.bst
+- variant/user.bst
 - system/initramfs.bst
 (?):
   - variant == "devel":
       depends:
         (>):
-        - groups/devel.bst 
+        - variant/devel.bst 
