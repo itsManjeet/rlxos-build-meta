@@ -1,7 +1,7 @@
 kind: filter
 
 build-depends:
-- sdk-deps/sysprof.bst
+- components/sysprof.bst
 
 runtime-depends:
 - components/glib.bst
