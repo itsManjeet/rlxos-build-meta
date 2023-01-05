@@ -8,9 +8,9 @@ build-depends:
 config:
   exclude:
     - debug
-    - doc
   (?):
   - variant == "user":
       exclude:
         (>):
         - devel
+        - doc
