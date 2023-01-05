@@ -2354,9 +2354,9 @@ index ebe2db8..818b8b9 100644
              self.parent_constructed(widget);
 +
 +            self.apps_button.connect_clicked(move |_| {
-+                process::Command::new("bash")
-+                    .arg("-c")
-+                    .arg("/usr/libexec/install-user-apps.sh")
++                process::Command::new("gnome-software")
++                    .arg("--mode=overview")
++                    .arg("--verbose")
 +                    .spawn();
 +            });
 +
